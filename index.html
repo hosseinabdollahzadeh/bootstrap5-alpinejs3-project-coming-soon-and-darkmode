@@ -22,7 +22,26 @@
     <i class="bi bi-moon-stars-fill fs-5 ms-2 lh-0 dark-text-white"></i>
 </div>
 
+<!--Header-->
+<header class="header text-gray dark-text-white">
+    <div class="container">
+        <div class="row text-center">
+            <h2 class="fw-bold mb-4"><span class="text-primary">لورم ایپسوم</span> <span id="text"></span></h2>
+            <p class="lh-lg">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
+                است.</p>
+        </div>
+    </div>
+</header>
+
 <script src="./js/bootstrap.bundle.min.js"></script>
+<script src="./js/ityped1.0.3.min.js"></script>
+<script>
+    const textElement = document.querySelector('#text')
+    ityped.init(textElement, {
+        showCursor: true,
+        strings: ['متن ساختگی با تولید سادگی', 'متن ساختگی با تولید', 'متن ساختگی ...']
+    })
+</script>
 <script defer src="./js/alpinejs3.12.1.min.js"></script>
 <script>
     document.addEventListener('alpine:init', () => {
