@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fa" dir="rtl" class="">
+<html x-data="darkMode" lang="fa" dir="rtl" :class="{ 'dark' : darkMode} ">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -12,14 +12,31 @@
 </head>
 <body class="dark-bg-body-dark">
 
+<!--Switch dark mode-->
 <div class="d-flex align-items-center justify-content-end p-4">
     <i class="bi bi-brightness-high-fill fs-4 me-2 lh-0 dark-text-white"></i>
     <div class="form-check form-switch">
-        <input class="form-check-input darkmode-switch " type="checkbox" role="switch" id="flexSwitchCheckDefault">
+        <input x-model="darkMode" class="form-check-input darkmode-switch" type="checkbox" role="switch"
+               id="flexSwitchCheckDefault">
     </div>
     <i class="bi bi-moon-stars-fill fs-5 ms-2 lh-0 dark-text-white"></i>
 </div>
 
 <script src="./js/bootstrap.bundle.min.js"></script>
+<script defer src="./js/alpinejs3.12.1.min.js"></script>
+<script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('darkMode', () => ({
+            darkMode: false,
+
+            init() {
+                this.darkMode = localStorage.theme === 'dark' ? true : false;
+                this.$watch('darkMode', (value) => {
+                    localStorage.theme = value ? 'dark' : 'light';
+                })
+            }
+        }))
+    })
+</script>
 </body>
 </html>
