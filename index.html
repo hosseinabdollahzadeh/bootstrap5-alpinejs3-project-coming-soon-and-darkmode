@@ -30,6 +30,24 @@
             <p class="lh-lg">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
                 است.</p>
         </div>
+        <div x-data="countdown" class="row countdown justify-content-center my-5">
+            <div>
+                <h3 class="fw-bold" x-text="days"></h3>
+                <h5 class="mb-0">روز</h5>
+            </div>
+            <div>
+                <h3 class="fw-bold" x-text="hours"></h3>
+                <h5>ساعت</h5>
+            </div>
+            <div>
+                <h3 class="fw-bold" x-text="minutes"></h3>
+                <h5>دقیقه</h5>
+            </div>
+            <div>
+                <h3 class="fw-bold" x-text="seconds"></h3>
+                <h5>ثانیه</h5>
+            </div>
+        </div>
     </div>
 </header>
 
@@ -54,7 +72,33 @@
                     localStorage.theme = value ? 'dark' : 'light';
                 })
             }
-        }))
+        })),
+            Alpine.data('countdown', () => ({
+                days: '00',
+                hours: '00',
+                minutes: '00',
+                seconds: '00',
+
+                init() {
+                    let endDate = new Date(2025, 6, 9).getTime();
+                    setInterval(() => {
+                        let nowDate = new Date().getTime();
+                        let time = endDate - nowDate;
+
+                        if (time >= 0) {
+                            this.days = this.format(Math.floor(time / (1000 * 60 * 60 * 24)));
+                            this.hours = this.format(Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+                            this.minutes = this.format(Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
+                            this.seconds = this.format(Math.floor((time % (1000 * 60)) / 1000));
+                        }
+                    }, 1000);
+                },
+
+                format(num) {
+                    return num < 10 ? '0' + num : num;
+                }
+
+            }))
     })
 </script>
 </body>

@@ -22,6 +22,10 @@ body {
     background-attachment: fixed;
 }
 
+.text-gray {
+    color: #44494e !important;
+}
+
 .lh-0 {
     line-height: 0;
 }
@@ -40,8 +44,23 @@ body {
     padding-top: 90px;
 }
 
-.text-gray {
-    color: #44494e !important;
+.header .countdown div {
+    text-align: center;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    margin: 10px 10px;
+    width: 100px;
+    padding: 15px 0;
+
+}
+
+@media (max-width: 575px) {
+    .header .countdown div {
+        margin: 10px 8px;
+        width: 70px;
+        padding: 10px 0;
+
+    }
 }
 
 /*iTyped.js*/
